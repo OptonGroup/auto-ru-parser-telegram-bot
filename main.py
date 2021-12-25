@@ -22,10 +22,10 @@ def parse_site(page):
     site_content = session.get('https://auto.ru/cars/nissan/all/?page={page}&output_type=carousel', headers=headers)
     site_content.encoding = 'utf-8'
     site_content = BeautifulSoup(site_content.text, 'lxml')
-    # site_content.find(class_='confirm-button').click()
-    # site_content = session.get('https://auto.ru/cars/nissan/all/?page={page}&output_type=carousel', headers=headers)
-    # site_content.encoding = 'utf-8'
-    # site_content = BeautifulSoup(site_content.text, 'lxml')
+    site_content.find('a').click()
+    site_content = session.get('https://auto.ru/cars/nissan/all/?page={page}&output_type=carousel', headers=headers)
+    site_content.encoding = 'utf-8'
+    site_content = BeautifulSoup(site_content.text, 'lxml')
     print(site_content)
     
     output = []
