@@ -22,6 +22,7 @@ def parse_site(page):
     site_content = session.get('https://auto.ru/cars/nissan/all/?page={page}&output_type=carousel', headers=headers)
     site_content.encoding = 'utf-8'
     site_content = BeautifulSoup(site_content.text, 'lxml')
+    return [site_content]
     
     output = []
     cars = [el for el in site_content.find_all('div', class_="ListingItemWide")]
