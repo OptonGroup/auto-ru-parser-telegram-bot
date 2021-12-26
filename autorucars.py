@@ -20,7 +20,8 @@ class autorucars(object):
         response = session.get(url=self.url+str(self.page), headers=self.headers)
         response.encoding = 'utf-8'
         if BeautifulSoup(response.text, 'lxml').find('div', id_='confirm-button'):
-           BeautifulSoup(response.text, 'lxml').find('div', id_='confirm-button').click()
+            print(BeautifulSoup(response.text, 'lxml').find('div', id_='confirm-button'))
+            BeautifulSoup(response.text, 'lxml').find('div', id_='confirm-button').click()
         response = session.get(url=self.url+str(self.page), headers=self.headers)
         response.encoding = 'utf-8'
         print(response.text)
