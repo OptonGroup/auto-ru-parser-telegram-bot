@@ -19,9 +19,10 @@ class autorucars(object):
         session = Session()
         response = session.get(url=self.url+str(self.page), headers=self.headers)
         response.encoding = 'utf-8'
-        if BeautifulSoup(response.text, 'lxml').find('div', class_='button_blue'):
-            print(BeautifulSoup(response.text, 'lxml').find('div', class_='button_blue'))
-            BeautifulSoup(response.text, 'lxml').find('div', class_='button_blue').click()
+        btn = BeautifulSoup(response.text, 'lxml').find('div', class_='button_blue')
+        if btn:
+            print(btn)
+            btn.click()
         response = session.get(url=self.url+str(self.page), headers=self.headers)
         response.encoding = 'utf-8'
         print(response.text)
