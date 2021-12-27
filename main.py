@@ -18,6 +18,8 @@ async def parse(message: types.Message):
     cars = autorucars(URL)
     
     car = cars.next_car()
+    await bot.send_message(message.from_user.id, car)
+    return
     while 1:
         if (car == False):
             break

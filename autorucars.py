@@ -25,9 +25,7 @@ class autorucars(object):
         session = Session()
         response = session.get(url=self.url+str(self.page), headers=self.headers)
         response.encoding = 'utf-8'
-        with open('index.html', 'w', encoding='utf-8') as file:
-            file.write(response.text)
-        return
+        return set(response.text)
         cars_json = loads(BeautifulSoup(response.text, 'lxml').find('script').text)['offers']['offers']
         cars = set(tuple(el.values()) for el in cars_json)
 
