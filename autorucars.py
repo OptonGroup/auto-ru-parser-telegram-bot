@@ -22,17 +22,9 @@ class autorucars(object):
         self.max_page = -1
 
     def __next_page(self):
-        from selenium import webdriver
-
-        driver = webdriver.Chrome()
-        driver.get(self.url+str(self.page))
-        btn = driver.find_element_by_class_name("button_blue")
-        btn.click()
-        
         session = Session()
         response = session.get(url=self.url+str(self.page), headers=self.headers)
         response.encoding = 'utf-8'
-        print(response.text)
         cars_json = loads(BeautifulSoup(response.text, 'lxml').find('script').text)['offers']['offers']
         cars = set(tuple(el.values()) for el in cars_json)
 
