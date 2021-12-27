@@ -22,13 +22,14 @@ class autorucars(object):
         self.max_page = -1
 
     def __next_page(self):
+        from selenium import webdriver
+
+        driver = webdriver.Chrome()
+        driver.get(self.url+str(self.page))
+        btn = driver.find_element_by_class_name("button_blue")
+        btn.click()
+        
         session = Session()
-        response = session.get(url=self.url+str(self.page), headers=self.headers)
-        response.encoding = 'utf-8'
-        btn = BeautifulSoup(response.text, 'lxml').find('div', class_='button_blue')
-        if btn:
-            print(btn)
-            btn.click()
         response = session.get(url=self.url+str(self.page), headers=self.headers)
         response.encoding = 'utf-8'
         print(response.text)
