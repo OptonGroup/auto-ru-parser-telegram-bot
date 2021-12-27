@@ -20,6 +20,18 @@ class autorucars(object):
             'suid': 'd1e72614fba7f20abd76bdde07f4d8db.0ad38b80a0db1bcc713eba2d0bcddbd0'
         }
         self.max_page = -1
+        
+        from selenium import webdriver
+        from selenium.webdriver.chrome.options import Options
+        opts = Options()
+        # без графического интерфейса.
+        opts.set_headless()
+        assert opts.headless 
+        # 
+        browser = webdriver.Chrome(options=opts)
+        browser.get(url+'1')
+        browser.find_element_by_id('confirm-button').click()
+        time.sleep(4)
 
     def __next_page(self):
         session = Session()
