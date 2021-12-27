@@ -20,6 +20,7 @@ async def parse(message: types.Message):
     car = cars.next_car()
     file = open('txt.txt', 'w', encoding='utf-8')
     file.write(str(car))
+    file.close()
     await bot.send_document(message.from_user.id, open('txt.txt', 'rb'))
     return
     while 1:
