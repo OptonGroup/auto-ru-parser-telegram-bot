@@ -11,18 +11,18 @@ class autorucars(object):
         self.page = 0
         self.headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.113 Safari/537.36'
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.113 Safari/537.36',
+            'X-Vertis-DC': 'sas', 
+            '_csrf_token': 'b5786b636d5f917e627ae283752eba1ad571de035d608018', 
+            '_yasc': 'YE+88d2U9TsCDLTnhSXo3F2BJrz5JPWQvg4tg+wokCKhlg==', 
+            'from': 'direct', 
+            'from_lifetime': '1640583649237', 
+            'suid': 'd1e72614fba7f20abd76bdde07f4d8db.0ad38b80a0db1bcc713eba2d0bcddbd0'
         }
         self.max_page = -1
 
     def __next_page(self):
         session = Session()
-        response = session.get(url=self.url+str(self.page), headers=self.headers)
-        response.encoding = 'utf-8'
-        btn = BeautifulSoup(response.text, 'lxml').find('div', class_='button_blue')
-        if btn:
-            print(btn)
-            btn.click()
         response = session.get(url=self.url+str(self.page), headers=self.headers)
         response.encoding = 'utf-8'
         print(response.text)
