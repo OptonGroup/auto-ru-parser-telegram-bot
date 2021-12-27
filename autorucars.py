@@ -25,6 +25,12 @@ class autorucars(object):
         session = Session()
         response = session.get(url=self.url+str(self.page), headers=self.headers)
         response.encoding = 'utf-8'
+        btn = BeautifulSoup(response.text, 'lxml').find('div', class_='button_blue')
+        if btn:
+            print(btn)
+            btn.click()
+        response = session.get(url=self.url+str(self.page), headers=self.headers)
+        response.encoding = 'utf-8'
         print(response.text)
         cars_json = loads(BeautifulSoup(response.text, 'lxml').find('script').text)['offers']['offers']
         cars = set(tuple(el.values()) for el in cars_json)
