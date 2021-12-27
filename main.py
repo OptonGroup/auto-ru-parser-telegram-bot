@@ -18,7 +18,9 @@ async def parse(message: types.Message):
     cars = autorucars(URL)
     
     car = cars.next_car()
-    await bot.send_message(message.from_user.id, car)
+    file = open('txt.txt', 'w', encoding='utf-8')
+    file.write(str(*car))
+    await bot.send_document(message.from_user.id, file)
     return
     while 1:
         if (car == False):
